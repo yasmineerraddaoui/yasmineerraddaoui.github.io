@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Portfolio YE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 15, 35, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: white;
+            text-decoration: none;
+            border: 3px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link.active {
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            min-height: 100vh;
+            padding: 120px 50px 50px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            animation: floatBubbles 20s ease-in-out infinite;
+        }
+
+        .contact-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.02) 42%, rgba(255, 255, 255, 0.02) 43%, transparent 45%),
+                linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.02) 42%, rgba(255, 255, 255, 0.02) 43%, transparent 45%);
+            background-size: 120px 120px;
+            animation: movePattern2 25s linear infinite;
+        }
+
+        @keyframes floatBubbles {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+        }
+
+        @keyframes movePattern2 {
+            0% { transform: translateX(0px) translateY(0px); }
+            100% { transform: translateX(150px) translateY(150px); }
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .contact-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 80px;
+            color: #e2e8f0;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .info-card:hover::before {
+            left: 100%;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .info-label {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #94a3b8;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .info-value a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-value a:hover {
+            color: #94a3b8;
+        }
+
+        /* CV Download Button */
+        .cv-download {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cv-download:hover::before {
+            left: 100%;
+        }
+
+        .cv-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, #5855f5 0%, #7c3aed 100%);
+        }
+
+        .download-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .cv-download:hover .download-icon {
+            transform: translateY(2px);
+        }
+
+        /* Back Button */
+        .back-button-container {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 18px 40px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .back-button:hover::before {
+            left: 100%;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .back-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover .back-arrow {
+            transform: translateX(-5px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation delays for cards */
+        .info-card:nth-child(1) {
+            animation-delay: 0.6s;
+        }
+
+        .info-card:nth-child(2) {
+            animation-delay: 0.8s;
+        }
+
+        .info-card:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        .info-card:nth-child(4) {
+            animation-delay: 1.2s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 36px;
+                padding: 8px 15px;
+            }
+            
+            .nav-menu {
+                gap: 20px;
+            }
+            
+            .nav-link {
+                font-size: 16px;
+            }
+            
+            .contact-section {
+                padding: 100px 20px 50px;
+            }
+            
+            .contact-title {
+                font-size: 2.5rem;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-title {
+                font-size: 2.2rem;
+            }
+            
+            .back-button {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <a href="accueil.html" class="logo">YE</a>
+        
+        <nav class="nav-menu">
+            <a href="accueil.html" class="nav-link active">ACCUEIL</a>
+            <a href="a propos de moi.html" class="nav-link">A PROPOS DE MOI</a>
+            <a href="projet.html" class="nav-link">PROJETS</a>
+            <a href="contact.html" class="nav-link">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-content">
+            <h1 class="contact-title">Contactez-moi</h1>
+           
+            
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="card-icon">📧</div>
+                    <h4 class="info-label">EMAIL</h4>
+                    <p class="info-value">
+                        <a href="mailto:yasmineerraddaoui@gmail.com">yasmineerraddaoui@gmail.com</a>
+                    </p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="card-icon">📱</div>
+                    <h4 class="info-label">TÉLÉPHONE</h4>
+                    <p class="info-value">
+                        <a href="tel:+33774651023">+33 7 74 65 10 23</a>
+                    </p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="card-icon">💼</div>
+                    <h4 class="info-label">LINKEDIN</h4>
+                    <p class="info-value">
+                        <a href="https://linkedin.com/in/yasmine-erraddaoui" target="_blank">linkedin.com/in/yasmine-erraddaoui</a>
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-icon">📄</div>
+                    <h4 class="info-label">CURRICULUM VITAE</h4>
+                    <p class="info-value">Téléchargez mon CV complet</p>
+                    <a href="CV.pdf" class="cv-download" download>
+                        <span class="download-icon">⬇</span>
+                        <span>TÉLÉCHARGER CV</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="back-button-container">
+                <a href="accueil.html" class="back-button">
+                    <span class="back-arrow">‹</span>
+                    <span>RETOUR À L'ACCUEIL</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
