@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - Portfolio YE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 15, 35, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: white;
+            text-decoration: none;
+            border: 3px solid white;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+        .nav-link.active {
+            color: white;
+        }
+
+        /* Hero Section with Photo */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 50px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            animation: floatBubbles 20s ease-in-out infinite;
+        }
+
+        @keyframes floatBubbles {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-content {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .hero-greeting {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .hero-photo {
+            position: relative;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .photo-container {
+            position: relative;
+            width: 350px;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-container:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .photo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            z-index: 1;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Placeholder for photo */
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Interests Section */
+        .interests-section {
+            min-height: 100vh;
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #16213e 0%, #1a1a2e 50%, #0f0f23 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interests-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.01) 42%, rgba(255, 255, 255, 0.01) 43%, transparent 45%),
+                linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.01) 42%, rgba(255, 255, 255, 0.01) 43%, transparent 45%);
+            background-size: 200px 200px;
+            animation: movePattern 30s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translateX(0px) translateY(0px); }
+            100% { transform: translateX(150px) translateY(150px); }
+        }
+
+        .interests-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .interests-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 80px;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .interest-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .interest-card:hover::before {
+            opacity: 1;
+        }
+
+        .interest-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .interest-card:hover .interest-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .interest-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .interest-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #e2e8f0;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Personal Values Section */
+        .values-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(96, 165, 250, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+            animation: floatBubbles 25s ease-in-out infinite;
+        }
+
+        .values-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .values-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .values-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .values-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+            margin-bottom: 30px;
+        }
+
+        .values-highlight {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+            
+            .photo-container {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .logo {
+                font-size: 36px;
+                padding: 8px 15px;
+            }
+            
+            .nav-menu {
+                gap: 20px;
+            }
+            
+            .nav-link {
+                font-size: 16px;
+            }
+            
+            .hero-section {
+                padding: 120px 20px 50px;
+            }
+            
+            .hero-greeting {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .photo-container {
+                width: 280px;
+                height: 360px;
+            }
+            
+            .interests-section {
+                padding: 80px 20px;
+            }
+            
+            .interests-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .interest-card {
+                padding: 30px;
+            }
+            
+            .values-section {
+                padding: 80px 20px;
+            }
+            
+            .values-content {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-greeting {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .photo-container {
+                width: 250px;
+                height: 320px;
+            }
+            
+            .interest-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            
+            .values-content {
+                padding: 30px;
+            }
+            
+            .values-title {
+                font-size: 2rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <a href="Accueil.html" class="logo">YE</a>
+        
+        <nav class="nav-menu">
+            <a href="accueil.html" class="nav-link active">ACCUEIL</a>
+            <a href="a propos de moi.html" class="nav-link">A PROPOS DE MOI</a>
+            <a href="projet.html" class="nav-link">PROJETS</a>
+            <a href="contact.html" class="nav-link">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Photo -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-greeting">Bonjour !</h1>
+                <p class="hero-subtitle">Ici vous allez apprendre un peu à me connaître</p>
+                
+            </div>
+            
+            <div class="hero-photo">
+                <div class="photo-container">
+                    <!-- Remplacez "ma photo.jpeg" par le vrai nom de votre fichier photo -->
+                    <img src="ma photo.jpeg" alt="Ma photo" class="profile-photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section class="interests-section">
+        <div class="interests-container">
+            <h2 class="interests-title">Mes Passions</h2>
+            
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">⚽</div>
+                    <h3 class="interest-title">Le Sport</h3>
+                    <p class="interest-description">
+                        J’aime le sport. Pratiquer de temps en temps est pour moi une source d’énergie et de plaisir. J’apprécie l’effort et les émotions que cela procure. C’est une passion simple, mais importante.
+                    </p>
+                </div>
+                
+                <div class="interest-card">
+                    <div class="interest-icon">✈️</div>
+                    <h3 class="interest-title">Les Voyages</h3>
+                    <p class="interest-description">
+                        J’aime voyager.
+
+Découvrir de nouveaux endroits, des cultures différentes ou simplement changer d’air – le voyage, même près de chez moi, c’est toujours une aventure. Que ce soit en ville, en nature ou au bord de la mer, l’important c’est l’évasion et les souvenirs que je ramène.
+                    </p>
+                </div>
+                
+                <div class="interest-card">
+                    <div class="interest-icon">👥</div>
+                    <h3 class="interest-title">Être Entourée</h3>
+                    <p class="interest-description">
+                        J'accorde une grande importance aux relations humaines. Être entourée de ma famille et de mes amis 
+                        me donne de l'énergie et de la motivation. J'aime partager des moments authentiques, 
+                        échanger des idées et construire des souvenirs ensemble.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+</body>
+</html>
