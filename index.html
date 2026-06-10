@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f13;
+    --surface: #16181f;
+    --card: #1c1f2a;
+    --border: #2a2d3a;
+    --accent: #6c63ff;
+    --accent2: #a78bfa;
+    --text: #e8e9f0;
+    --muted: #7c7f95;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(14,15,19,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: var(--accent2); font-style: italic; }
+
+  .nav-links {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .nav-links button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links button:hover { color: var(--text); background: var(--border); }
+  .nav-links button.active { color: var(--white); background: var(--accent); }
+
+  /* SECTIONS */
+  section {
+    display: none;
+    min-height: 100vh;
+    padding: 100px 40px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  section.active { display: block; }
+
+  /* ===== ACCUEIL ===== */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 100px);
+    padding-top: 40px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent2);
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+  }
+
+  .hero-title em { color: var(--accent2); font-style: italic; }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover { background: #5952e8; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent2); color: var(--accent2); }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+
+  .stat-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-label { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* ===== À PROPOS ===== */
+  .ap-hero {
+    padding-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+    max-width: 700px;
+  }
+
+  .ap-hero .section-eyebrow { margin-bottom: 16px; }
+  .ap-hero .section-title { margin-bottom: 20px; }
+
+  .ap-intro {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .ap-skills-section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ap-skills-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .ap-skill-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .ap-skill-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .ap-skill-icon {
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    background: rgba(108,99,255,0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ap-skill-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .ap-skill-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .ap-skills-list { grid-template-columns: 1fr 1fr; }
+  }
+
+  .section-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent2);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  .about-text { color: var(--muted); line-height: 1.75; margin-bottom: 20px; font-size: 0.97rem; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .skill-tag {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s;
+  }
+
+  .skill-tag:hover { border-color: var(--accent); }
+
+  .skill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    flex-shrink: 0;
+  }
+
+  /* ===== PROJETS ===== */
+  .projects-header {
+    margin-bottom: 48px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .project-content {
+    padding: 32px 36px;
+  }
+
+  .project-tag {
+    display: inline-block;
+    background: rgba(108,99,255,0.15);
+    color: var(--accent2);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(108,99,255,0.25);
+  }
+
+  .project-content h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .project-content p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    text-align: justify;
+
+  }
+
+  .project-tools {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .tool-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .project-image {
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 220px;
+    position: relative;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover .project-image img { opacity: 1; }
+
+  .img-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--border);
+  }
+
+  .img-placeholder svg { opacity: 0.4; }
+
+  .img-placeholder span {
+    font-size: 0.75rem;
+    color: var(--muted);
+    opacity: 0.5;
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  /* ===== CENTRES D'INTÉRÊT ===== */
+  .interests-section {
+    margin-top: 80px;
+    padding-top: 64px;
+    border-top: 1px solid var(--border);
+    padding-bottom: 40px;
+  }
+
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .interest-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 36px 28px;
+    text-align: center;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .interest-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .interest-icon {
+    font-size: 2.8rem;
+    background: rgba(108,99,255,0.15);
+    border-radius: 16px;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    border: 1px solid rgba(108,99,255,0.2);
+  }
+
+  .interest-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .interest-text {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .interests-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== ACCUEIL BLOCS ===== */
+  .home-block {
+    margin-top: 96px;
+    padding-top: 72px;
+    border-top: 1px solid var(--border);
+  }
+
+  .home-block-header { margin-bottom: 40px; }
+  .home-block-header .section-eyebrow { margin-bottom: 12px; }
+  .home-block-header .section-title { margin-bottom: 0; }
+
+  .home-text-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 56px;
+  }
+
+  .home-para {
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.85;
+    text-align: justify;
+  }
+
+  /* Réseaux sociaux */
+  .home-socials {
+    margin-top: 96px;
+    padding-top: 64px;
+    border-top: 1px solid var(--border);
+    padding-bottom: 60px;
+  }
+
+  .home-socials .section-eyebrow { margin-bottom: 28px; }
+
+  .socials-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .social-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    transition: all 0.25s;
+  }
+
+  .social-btn:hover { transform: translateY(-2px); }
+
+  .social-btn.facebook:hover  { border-color: #1877f2; color: #1877f2; }
+  .social-btn.instagram:hover { border-color: #e1306c; color: #e1306c; }
+  .social-btn.linkedin:hover  { border-color: #0a66c2; color: #0a66c2; }
+  .social-btn.github:hover    { border-color: var(--accent2); color: var(--accent2); }
+
+  @media (max-width: 768px) {
+    .home-text-cols { grid-template-columns: 1fr; }
+    .socials-row { flex-direction: column; }
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+  .form-group label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    padding: 14px 18px;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+
+  .form-group textarea { min-height: 140px; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 24px; margin-top: 48px; }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .contact-item:hover { border-color: var(--accent); }
+
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(108,99,255,0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--accent2);
+  }
+
+  .contact-item-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-item-value { font-size: 0.95rem; color: var(--text); }
+
+  .iut-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .iut-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 20px;
+    transition: border-color 0.2s;
+  }
+
+  .iut-card:hover { border-color: var(--accent); }
+
+  .iut-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 10px;
+  }
+
+  .iut-value {
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .iut-socials { margin-bottom: 60px; }
+
+  @media (max-width: 768px) {
+    .iut-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    section { padding: 90px 20px 40px; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-image { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-stats { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Port<span>folio</span></div>
+  <ul class="nav-links">
+    <li><button onclick="showTab('accueil')" class="active" id="btn-accueil">Accueil</button></li>
+    <li><button onclick="showTab('apropos')" id="btn-apropos">À propos</button></li>
+    <li><button onclick="showTab('projets')" id="btn-projets">Projets</button></li>
+    <li><button onclick="showTab('contact')" id="btn-contact">Contact</button></li>
+  </ul>
+</nav>
+
+<!-- ===== ACCUEIL ===== -->
+<section id="accueil" class="active">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Bienvenue sur mon portfolio</div>
+    <h1 class="hero-title">
+      Étudiante en<br><em>BUT Science des Données</em>
+    </h1>
+    <p class="hero-subtitle">
+      Passionnée par l'analyse de données, la visualisation et la modélisation statistique. Je transforme des données brutes en insights actionnables.
+    </p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showTab('projets')">Voir mes projets</button>
+      <button class="btn-ghost" onclick="showTab('contact')">Me contacter</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">10</span>
+        <span class="stat-label">Projets réalisés</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Années de formation</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">8+</span>
+        <span class="stat-label">Technologies maîtrisées</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MON PARCOURS -->
+  <div class="home-block">
+    <div class="home-block-header">
+      <div class="section-eyebrow">Mon parcours</div>
+      <h2 class="section-title">BUT Science des Données —<br><em style="font-style:italic;color:var(--accent2);">IUT de Niort</em></h2>
+    </div>
+    <div class="home-text-cols">
+      <p class="home-para">Actuellement étudiante en BUT Science des Données à l'IUT de Niort, je suis en train de me former aux enjeux majeurs liés à l'analyse statistique et à l'aide à la décision. Cette formation polyvalente me permet d'acquérir des compétences solides en programmation, en traitement et visualisation de données, ainsi qu'en gestion de projets orientés données.</p>
+      <p class="home-para">Ce cursus est pour moi une véritable opportunité de construire une base de compétences techniques et méthodologiques qui me seront précieuses pour la suite de mon parcours professionnel. Les débouchés dans ce domaine étant nombreux et variés, j'aborde l'avenir avec confiance et ambition. L'environnement de travail à l'IUT, notamment les laboratoires informatiques à la pointe, favorise une mise en pratique concrète des savoirs enseignés. Nous utilisons régulièrement des outils et des logiciels reconnus dans le monde professionnel, ce qui renforce notre employabilité. Ce choix d'orientation me conforte chaque jour un peu plus dans mon projet : évoluer dans le secteur de la data et contribuer à des prises de décisions éclairées basées sur l'analyse rigoureuse des données.</p>
+    </div>
+  </div>
+
+  <!-- MON BILAN -->
+  <div class="home-block">
+    <div class="home-block-header">
+      <div class="section-eyebrow">Mon bilan personnel</div>
+      <h2 class="section-title">Une première année<br><em style="font-style:italic;color:var(--accent2);">riche en découvertes</em></h2>
+    </div>
+    <div class="home-text-cols">
+      <p class="home-para">Mon entrée en BUT Science des Données a été une belle aventure, marquée par la découverte d'un domaine aussi riche que passionnant. Au début, tout était nouveau pour moi : la manipulation des données, la programmation en Python, les statistiques appliquées… Mais très vite, j'ai été captivée par la façon dont ces compétences permettent d'extraire du sens à partir d'informations brutes. Cette première année m'a permis d'acquérir des bases solides, que ce soit en analyse de données, en algorithmique ou en visualisation. Les projets concrets m'ont montré l'aspect stimulant de cette formation.</p>
+      <p class="home-para">Je tiens à remercier les enseignants pour leur pédagogie et leur engagement, qui ont rendu l'apprentissage à la fois enrichissant et motivant. Leur accompagnement bienveillant a été précieux pour ma progression. Bien sûr, comme dans toute nouvelle formation, il y a eu quelques moments de stress mais j'ai appris à mieux gérer ces situations. Aujourd'hui, je me sens motivée et enthousiaste à l'idée de poursuivre cette formation. J'ai hâte d'approfondir mes connaissances l'année prochaine et de relever de nouveaux défis dans le monde passionnant de la data !</p>
+    </div>
+  </div>
+
+  <!-- RÉSEAUX SOCIAUX -->
+  <div class="home-socials">
+    <div class="section-eyebrow">Retrouvez-moi sur</div>
+    <div class="socials-row">
+      <a href="#" class="social-btn facebook" title="Facebook">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span>Facebook</span>
+      </a>
+      <a href="#" class="social-btn instagram" title="Instagram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a href="#" class="social-btn linkedin" title="LinkedIn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <span>LinkedIn</span>
+      </a>
+      <a href="#" class="social-btn github" title="GitHub">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== À PROPOS ===== -->
+<section id="apropos">
+
+  <!-- INTRO HERO -->
+  <div class="ap-hero">
+    <div class="section-eyebrow">À propos de moi</div>
+    <h2 class="section-title">Étudiante, analytique,<br><em style="font-style:italic;color:var(--accent2);">tournée vers l'avenir</em></h2>
+    <p class="ap-intro">Étudiante en BUT Science des Données à l'IUT de Niort, je transforme les données brutes en décisions éclairées. Curieuse, rigoureuse et passionnée par les nouvelles technologies, je construis chaque jour les compétences qui feront de moi une professionnelle de la data.</p>
+  </div>
+
+  <!-- COMPÉTENCES -->
+  <div class="ap-skills-section">
+    <div class="section-eyebrow" style="margin-bottom:24px;">Mes outils & compétences</div>
+    <div class="ap-skills-list">
+      <div class="ap-skill-item">
+        <div class="ap-skill-icon">🐍</div>
+        <div>
+          <div class="ap-skill-name">Python</div>
+          <div class="ap-skill-sub">Pandas, NumPy, Matplotlib</div>
+        </div>
+      </div>
+      <div class="ap-skill-item">
+        <div class="ap-skill-icon">📊</div>
+        <div>
+          <div class="ap-skill-name">R & ggplot2</div>
+          <div class="ap-skill-sub">Statistiques, modélisation, datavisualisation</div>
+        </div>
+      </div>
+      <div class="ap-skill-item">
+        <div class="ap-skill-icon">🗄️</div>
+        <div>
+          <div class="ap-skill-name">SQL / MySQL</div>
+          <div class="ap-skill-sub">Requêtes, conception BDD, Looping</div>
+        </div>
+      </div>
+      <div class="ap-skill-item">
+        <div class="ap-skill-icon">📈</div>
+        <div>
+          <div class="ap-skill-name">Power BI</div>
+          <div class="ap-skill-sub">Tableaux de bord interactifs</div>
+        </div>
+      </div>
+      <div class="ap-skill-item">
+        <div class="ap-skill-icon">📋</div>
+        <div>
+          <div class="ap-skill-name">Excel / VBA</div>
+          <div class="ap-skill-sub">Automatisation, formulaires, reporting</div>
+        </div>
+      </div>
+      <div class="ap-skill-item">
+        <div class="ap-skill-icon">🔄</div>
+        <div>
+          <div class="ap-skill-name">Méthode SCRUM</div>
+          <div class="ap-skill-sub">Gestion de projet agile en équipe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTRES D'INTÉRÊT -->
+  <div class="interests-section">
+    <div class="section-eyebrow" style="margin-bottom:24px;">Ce qui me ressemble</div>
+    <div class="interests-grid">
+
+      <div class="interest-card">
+        <div class="interest-icon">⚽</div>
+        <h3 class="interest-title">Le Sport</h3>
+        <p class="interest-text">Le sport occupe une place importante dans ma vie. Que ce soit pour me dépenser, me vider la tête après une journée chargée ou simplement ressentir la satisfaction de l'effort, j'ai besoin de cette activité physique régulière. J'apprécie autant le défi personnel que l'esprit de compétition. Le sport m'a appris la discipline, la persévérance et la capacité à me surpasser — des qualités que je retrouve naturellement dans mes études et mes projets.</p>
+      </div>
+
+      <div class="interest-card">
+        <div class="interest-icon">✈️</div>
+        <h3 class="interest-title">Les Voyages</h3>
+        <p class="interest-text">Voyager est pour moi bien plus qu'un simple loisir, c'est une façon d'apprendre et de s'ouvrir au monde. Découvrir de nouveaux paysages, goûter à d'autres cuisines, comprendre des cultures différentes de la mienne — chaque départ est une aventure qui enrichit ma vision des choses. Que ce soit un week-end proche de chez moi ou une destination lointaine, je reviens toujours avec de nouveaux souvenirs, de nouvelles idées et une curiosité encore plus grande.</p>
+      </div>
+
+      <div class="interest-card">
+        <div class="interest-icon">👥</div>
+        <h3 class="interest-title">Le Lien Humain</h3>
+        <p class="interest-text">Les relations humaines sont au cœur de ce qui me motive au quotidien. Être entourée de ma famille et de mes amis me donne une énergie précieuse et un équilibre essentiel. J'aime les discussions sincères, les moments partagés et les projets construits ensemble. Cette valeur du collectif se reflète aussi dans mon rapport aux études : j'apprécie particulièrement le travail en équipe, les échanges d'idées et la dynamique de groupe qui fait avancer les choses.</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== PROJETS ===== -->
+<section id="projets">
+  <div class="projects-header">
+    <div class="section-eyebrow">Réalisations</div>
+    <h2 class="section-title">Mes projets</h2>
+  </div>
+
+  <!-- Projet 1 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Reporting à partir de données stockées dans un SGBD relationnel</h3>
+      <p>Dans le cadre de ce projet, nous avons conçu une application de suivi des résultats académiques sous Excel destinée aux étudiants de BUT SD1. L'outil développé permet la saisie et la mise à jour des notes à travers une interface intuitive intégrant des listes déroulantes dynamiques pour sélectionner les semestres, compétences, ressources et SAÉ. Un tableau de bord interactif a également été mis en place afin de faciliter l'analyse des performances grâce à des indicateurs visuels et des graphiques synthétiques. Par ailleurs, une fonctionnalité automatisée de décision de jury a été développée pour évaluer la validation de l'année selon les critères définis. La programmation en VBA a été utilisée pour enrichir l'ergonomie de l'outil, notamment via la création de formulaires personnalisés. Ce projet m'a permis de renforcer mes compétences en développement d'applications sous Excel, en automatisation avec VBA, en conception d'interfaces utilisateur et en gestion de projets répondant à un cahier des charges précis.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 2 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Écriture et lecture de fichiers de données</h3>
+      <p>Dans le cadre de cette SAÉ, nous avons développé un script Python permettant de transformer un fichier JSON contenant des données sur la qualité de l'air à Poitiers en un fichier CSV exploitable pour l'analyse. Le travail consistait à extraire les informations pertinentes relatives aux stations de mesure, aux polluants et aux prélèvements, tout en nettoyant les données en supprimant les enregistrements incomplets. Une attention particulière a été portée au formatage des dates, à la gestion des caractères accentués et à la structuration du fichier final afin de garantir sa compatibilité avec Excel. Ce projet m'a permis de renforcer mes compétences en programmation Python, en manipulation de fichiers JSON et CSV, en traitement et nettoyage de données, ainsi qu'en compréhension des structures de données et des algorithmes nécessaires à leur transformation. J'ai également appris à développer un code clair, commenté et conforme aux bonnes pratiques de programmation afin de répondre efficacement à un besoin défini.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 3 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Préparation et synthèse d'un tableau de données en vue d'une analyse exploratoire simple</h3>
+      <p>Nous devions analyser les usages du smartphone auprès des étudiants en BUT de l'IUT de Niort à partir d'une enquête réalisée sous Sphinx. Après avoir préparé et exploré les données collectées auprès de 373 répondants, nous avons étudié les habitudes d'utilisation, les comportements numériques et les perceptions des étudiants. Les résultats ont été valorisés à travers un document de synthèse structuré autour de plusieurs axes d'analyse ainsi qu'un tableau de bord visuel intégrant différents graphiques et indicateurs clés. Ce projet a mobilisé nos compétences en préparation et traitement de données, en analyse statistique descriptive, en visualisation de l'information et en communication des résultats.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 4 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Conception et implémentation d'une base de données</h3>
+      <p>Nous avons mené un projet de conception et d'implémentation d'une base de données pour GreenSD, une entreprise spécialisée dans la logistique urbaine bas-carbone. L'objectif était de centraliser la gestion des flux logistiques en assurant le suivi des livraisons, des véhicules écologiques, des tournées, des conducteurs et des émissions de CO₂ associées. Nous avons conçu un modèle conceptuel de données (MCD) avec Looping, puis généré le modèle logique et les scripts SQL nécessaires à la création et à l'alimentation de la base sous MySQL. Un script Python a été développé afin d'automatiser l'importation et le traitement des données issues de fichiers CSV. Nous avons également conçu une interface graphique avec Tkinter permettant de consulter les tables, de gérer les données (ajout, modification, suppression) et d'exécuter différentes requêtes d'analyse destinées à l'aide à la décision. Ce projet nous a permis de renforcer nos compétences en modélisation de données, en SQL, en programmation Python, en automatisation de traitements et en conception d'interfaces utilisateur.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 5 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Estimation par échantillonnage</h3>
+      <p>Dans ce projet réalisé sous R, nous avons estimé la population totale de la région Normandie à partir de deux méthodes d'échantillonnage : l'échantillonnage aléatoire simple et l'échantillonnage stratifié. L'objectif était de comparer la précision de ces approches en analysant les intervalles de confiance et les marges d'erreur obtenus sur plusieurs tirages. Les résultats ont été présentés à l'aide d'un tableau Excel et d'un graphique accompagné d'un rapport détaillé.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 6 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Régression sur des données réelles</h3>
+      <p>Dans le cadre de ce projet, nous avons travaillé sur la modélisation des prix immobiliers au sein de l'agglomération niortaise à partir de données de transactions de maisons et d'appartements réalisées depuis 2021. Après une phase d'exploration des données, nous avons étudié les relations entre le prix de vente et les différentes caractéristiques des biens afin d'identifier des segments homogènes pertinents pour la modélisation. Pour chaque segment, nous avons développé et implémenté manuellement des modèles de régression linéaire sous R, sans recourir aux fonctions automatisées de modélisation. Plusieurs transformations de variables ont été testées afin d'améliorer la qualité des ajustements et la précision des prédictions. Les modèles retenus ont ensuite été évalués sur un jeu de test avant d'être utilisés pour estimer les prix de biens dont la valeur était inconnue. Ce projet m'a permis de renforcer mes compétences en analyse exploratoire de données, en modélisation statistique, en programmation R et en évaluation de performances prédictives, tout en développant une démarche rigoureuse de recherche et d'interprétation des résultats.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 7 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Reporting et datavisualisation — R</h3>
+      <p>Dans le cadre de ce projet de visualisation de données, nous avons exploité plusieurs jeux de données issus de Parcoursup ainsi que des informations relatives aux effectifs d'élèves de terminale générale. L'objectif était de réaliser une analyse descriptive à travers la production de sept graphiques réalisés avec le logiciel R et la librairie ggplot2, chacun répondant à des contraintes précises de représentation statistique. Nous avons ainsi exploré différentes variables qualitatives et quantitatives, étudié leurs relations et mis en évidence des tendances à travers des visualisations variées, incluant également des représentations géographiques. Chaque graphique a été accompagné d'une description permettant d'interpréter les informations observées de manière claire et structurée. Ce projet m'a permis de renforcer mes compétences en datavisualisation sous R, en manipulation de données, en analyse descriptive et en communication d'informations statistiques à travers des supports graphiques.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 8 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Analyse de données, reporting et datavisualisation</h3>
+      <p>Dans le cadre de cette SAÉ, nous avons développé un outil d'analyse de données, de reporting et de datavisualisation pour le laboratoire Qualyse, spécialisé dans les analyses sanitaires. L'objectif était d'automatiser le traitement des résultats de tests PCR réalisés sur des élevages des départements 79 et 86 depuis 2018, tout en facilitant le suivi de leur évolution au fil du temps. Nous avons conçu une solution capable d'intégrer de nouveaux jeux de données, de classifier automatiquement les cheptels selon leur statut sanitaire et de produire des indicateurs pertinents sous forme de tableaux de bord interactifs. Le projet a également mobilisé des analyses statistiques afin de répondre à des problématiques métier, telles que l'évolution des cheptels positifs ou l'impact des différentes sessions de dépistage. Réalisé en équipe selon la méthodologie agile SCRUM, ce projet m'a permis de développer mes compétences en gestion de projet, en traitement et visualisation de données, en automatisation de processus, ainsi qu'en communication et valorisation des résultats auprès d'un commanditaire.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 9 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Data Visualisation</h3>
+      <p>Dans le cadre de ce projet de Data Visualisation, nous avons réalisé une étude comparative de deux pays de l'Union européenne à partir de plusieurs indicateurs démographiques et sociaux tels que la population, la mortalité, la fertilité, le mariage et le divorce. À l'aide de Power BI, nous avons exploré et analysé les données afin de mettre en évidence les similitudes et les différences entre les pays étudiés, tout en les comparant à la moyenne européenne. L'objectif était de construire une analyse visuelle cohérente et de raconter une histoire à partir des données en s'appuyant sur des tableaux de bord interactifs et des visualisations adaptées. Nous avons porté une attention particulière à l'ergonomie, au choix des graphiques, à la navigation entre les pages et à la mise en forme des indicateurs. Ce projet m'a permis de développer mes compétences en datavisualisation, en analyse comparative de données, en conception de tableaux de bord sous Power BI et en communication de résultats à travers des supports visuels clairs et pertinents.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 10 -->
+  <div class="project-card">
+    <div class="project-content">      <h3>Journée Dataviz</h3>
+      <p>Dans le cadre de cette SAÉ, nous avons réalisé une infographie portant sur l'analyse des dynamiques démographiques des territoires à partir de données de l'INSEE. L'étude s'appuie sur plusieurs indicateurs tels que les naissances, les décès, le solde naturel et migratoire, ainsi que la répartition par tranches d'âge, sur différentes échelles géographiques et périodes temporelles. Après une phase d'exploration et de compréhension des données, nous avons défini une problématique ciblée afin de mettre en évidence les principales évolutions démographiques entre 2016 et 2022. Les résultats ont été synthétisés sous la forme d'une infographie sur une seule page, construite à partir de visualisations pertinentes et hiérarchisées pour faciliter la lecture et l'interprétation des tendances. Ce projet m'a permis de développer mes compétences en analyse de données territoriales, en datavisualisation, en synthèse d'informations complexes et en conception de supports de communication visuelle adaptés à un public non spécialiste.</p>    </div>
+    <div class="project-image">
+      <div class="img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Ajoute une image (src="chemin/image.png")</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="section-eyebrow">Me contacter</div>
+  <h2 class="section-title" style="margin-bottom: 48px;">Prendre contact</h2>
+
+  <!-- Formulaire -->
+  <div class="contact-form" style="max-width: 600px; margin-bottom: 72px;">
+    <div class="form-group">
+      <label>Nom</label>
+      <input type="text" placeholder="Votre nom">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" placeholder="votre@email.com">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Votre message..."></textarea>
+    </div>
+    <button class="btn-primary" style="align-self: flex-start; margin-top: 4px;">Envoyer le message</button>
+  </div>
+
+  <!-- Infos IUT -->
+  <div class="section-eyebrow" style="margin-bottom: 20px;">Informations — BUT Science des Données · IUT de Niort</div>
+  <div class="iut-grid">
+    <div class="iut-card">
+      <div class="iut-label">Chef du département</div>
+      <div class="iut-value">Laurent Bureau</div>
+    </div>
+    <div class="iut-card">
+      <div class="iut-label">Adresse</div>
+      <div class="iut-value">8 Rue Archimède<br>79000 Niort</div>
+    </div>
+    <div class="iut-card">
+      <div class="iut-label">Email</div>
+      <div class="iut-value">iutp.sd@univ-poitiers.fr</div>
+    </div>
+    <div class="iut-card">
+      <div class="iut-label">Téléphone</div>
+      <div class="iut-value">05 49 79 99 01</div>
+    </div>
+  </div>
+
+  <!-- Réseaux sociaux BUT SD -->
+  <div class="iut-socials">
+    <div class="section-eyebrow" style="margin-bottom: 20px;">Réseaux sociaux BUT SD Niort</div>
+    <div class="socials-row">
+      <a href="https://www.facebook.com" target="_blank" class="social-btn facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <span>Facebook</span>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" class="social-btn instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span>Instagram</span>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('btn-' + id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
