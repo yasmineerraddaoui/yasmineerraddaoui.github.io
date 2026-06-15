@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yasmine Erraddaoui — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #f4f5f7;
+    --white: #ffffff;
+    --dark: #0f1117;
+    --accent: #2563eb;
+    --accent-light: #dbeafe;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --text: #1f2937;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links button:hover { color: var(--text); background: var(--border); }
+  .nav-links button.active { color: var(--accent); background: var(--accent-light); font-weight: 600; }
+
+  .nav-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    display: none;
+    min-height: 100vh;
+  }
+
+  section.active { display: flex; flex-direction: column; }
+
+  /* ===== ACCUEIL ===== */
+  #accueil {
+    align-items: stretch;
+    padding-top: 64px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: center;
+    gap: 0;
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 48px;
+    min-height: calc(100vh - 64px);
+  }
+
+  .hero-left { padding-right: 64px; }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+
+  .hero-name span { color: var(--accent); }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 460px;
+    margin-bottom: 40px;
+  }
+
+  .hero-cta { display: flex; gap: 12px; }
+
+  .btn-primary {
+    background: var(--dark);
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1.5px solid var(--border);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-right {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+  }
+
+  .hero-photo-frame {
+    position: relative;
+    width: 420px;
+  }
+
+.hero-photo-frame::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px;
+    right: -10px; bottom: -10px;
+    border-radius: 28px;
+    background: var(--accent-light);
+    border: 1.5px solid #bfdbfe;
+    z-index: 0;
+}
+
+  .hero-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 520px;
+    object-fit: contain;
+    object-position: center top;
+    border-radius: 24px;
+    display: block;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+
+  /* ===== PROJETS ===== */
+  #projets { display: none; flex-direction: column; min-height: 100vh; }
+  #projets.active { display: flex; }
+
+  .projects-wrap {
+    padding: 100px 48px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .projects-header { margin-bottom: 40px; }
+
+  .projects-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .projects-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.25s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .project-content { padding: 28px 32px; }
+
+  .project-content h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.35;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .project-content p {
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.75;
+    text-align: justify;
+  }
+
+  .ac-btn {
+    margin-top: 18px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .ac-btn:hover { background: var(--accent-light); border-color: var(--accent); }
+  .ac-btn.open { background: var(--accent-light); border-color: var(--accent); }
+
+  .ac-panel {
+    display: none;
+    margin-top: 14px;
+    background: var(--accent-light);
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 14px 18px;
+  }
+
+  .ac-panel ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .ac-panel li {
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.5;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .ac-code {
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .project-image {
+    background: #f8fafc;
+    border-left: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    height: 260px;
+  }
+
+  .project-slider {
+    width: 100%; height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-slider img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: none;
+    background: #f8fafc;
+  }
+
+  .project-slider img.active { display: block; }
+
+  .slider-btn {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 34px; height: 34px;
+    border: none; border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    color: var(--dark);
+    font-size: 14px;
+    cursor: pointer; z-index: 10;
+    transition: 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .slider-btn:hover { background: var(--accent); color: #fff; }
+  .slider-prev { left: 8px; }
+  .slider-next { right: 8px; }
+
+  /* ===== PLACEHOLDER / À PROPOS ===== */
+  .placeholder-section {
+    padding: 100px 48px 60px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .placeholder-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .placeholder-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .placeholder-desc {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.75;
+    text-align: justify;
+  }
+
+  /* ===== CONTACT CARDS ===== */
+  .hero-contacts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 600px;
+  }
+
+  .hero-contact-card {
+    background: var(--white);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-decoration: none;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+
+  .hero-contact-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .hero-contact-icon { font-size: 1.3rem; margin-bottom: 2px; }
+  .hero-contact-label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .hero-contact-value { font-size: 0.8rem; font-weight: 500; color: var(--dark); word-break: break-all; }
+
+  /* ===== COMPÉTENCES — intégré dans le style général ===== */
+  .ap-skills-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+    width: 100%;
+  }
+
+  .ap-skills-section .placeholder-title {
+    margin-bottom: 28px;
+  }
+
+  .ap-skills-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .ap-skill-card {
+    background: var(--white);
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    padding: 1.4rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    transition: transform 0.2s;
+  }
+
+  .ap-skill-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .ap-skill-svg {
+    width: 48px; height: 48px;
+    background: var(--accent-light);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+
+  .ap-skill-card-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .ap-skill-card-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+
+
+/* ===== CENTRES D'INTÉRÊT ===== */
+.ap-interests-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+  width: 100%;
+}
+
+.ap-interests-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.ap-interest-card {
+  background: var(--white);
+  border: 2px solid var(--accent);
+  border-radius: 14px;
+  padding: 2rem 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  transition: transform 0.2s;
+}
+
+.ap-interest-card:hover {
+  transform: translateY(-2px);
+}
+
+.ap-interest-icon {
+  width: 56px; height: 56px;
+  background: var(--accent-light);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 2px;
+}
+
+.ap-interest-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.ap-interest-card-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+text-align:justify
+}
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 32px 24px 48px;
+      min-height: auto;
+      text-align: center;
+      gap: 40px;
+    }
+    .hero-desc { margin: 0 auto 40px; }
+    .hero-cta { justify-content: center; }
+    .hero-right { padding: 0; }
+    .hero-photo-frame { width: 240px; }
+    .hero-photo { height: 280px; }
+    .placeholder-section { padding: 100px 24px 48px; }
+    .ap-skills-section { padding: 0 24px 60px; }
+    .ap-skills-list { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .projects-wrap { padding: 90px 20px 48px; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-image { display: none; }
+    .ap-skills-list { grid-template-columns: 1fr 1fr; }
+  }
+.hero-contacts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 600px;
+}
+
+.hero-contact-card.full-width {
+    grid-column: span 2;
+    width: calc(50% - 8px);
+    margin: 0 auto;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><button onclick="showTab('accueil')" id="btn-accueil" class="active">Accueil</button></li>
+    <li><button onclick="showTab('apropos')" id="btn-apropos">À propos</button></li>
+    <li><button onclick="showTab('projets')" id="btn-projets">Projets</button></li>
+    <li><button onclick="showTab('contact')" id="btn-contact">Contact</button></li>
+  </ul>
+  <div class="nav-name">Yasmine Erraddaoui</div>
+</nav>
+
+<!-- ACCUEIL -->
+<section id="accueil" class="active">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Portfolio</div>
+      <h1 class="hero-name">Yasmine<br><span>Erraddaoui</span></h1>
+      <p class="hero-desc">
+        Bienvenue sur mon portfolio. Étudiante en BUT Science des Données à l'IUT de Niort. Ici vous trouverez mes projets, mon parcours et les moyens de me contacter.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showTab('projets')">Voir mes réalisations</button>
+        <button class="btn-ghost" onclick="showTab('contact')">Me contacter</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo-frame">
+        <img src="Images/Profil/ma_photo.jpeg" alt="Yasmine Erraddaoui" class="hero-photo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="apropos">
+  <div class="placeholder-section">
+
+    <div class="placeholder-eyebrow">À propos</div>
+
+    <h2 class="placeholder-title">Mon parcours</h2>
+    <p class="placeholder-desc">
+      Actuellement étudiante en <strong>BUT Science des Données à l'IUT de Niort</strong>,
+      je me forme aux enjeux de l'analyse statistique et de l'aide à la décision.
+      Cette formation polyvalente me permet de développer des compétences solides en
+      programmation, traitement et visualisation des données, ainsi qu'en gestion
+      de projets orientés data.
+      <br><br>
+      Grâce aux nombreux projets réalisés et à l'utilisation d'outils reconnus dans
+      le monde professionnel, je construis progressivement une base technique et
+      méthodologique solide. Mon objectif est d'évoluer dans le domaine de la data
+      et de contribuer à des prises de décisions éclairées fondées sur une analyse
+      rigoureuse des données.
+    </p>
+
+    <br><br><br>
+
+    <h2 class="placeholder-title">Mon bilan personnel</h2>
+    <p class="placeholder-desc">
+      <strong>Une première année riche en découvertes</strong>
+      <br><br>
+      Mon entrée en BUT Science des Données a été une expérience particulièrement enrichissante. J'y ai découvert un domaine passionnant qui m'a permis d'acquérir des bases solides en statistiques, programmation et analyse de données. Les différents projets réalisés au cours de cette première année m'ont permis de mettre en pratique les notions étudiées et de développer ma curiosité pour le monde de la data.
+      <br><br>
+      Aujourd'hui, je poursuis cette formation avec motivation et ambition, impatiente d'approfondir mes connaissances, de relever de nouveaux défis et de développer davantage mes compétences techniques et analytiques.
+      <br><br>
+Je suis également très heureuse de commencer ma deuxième année en alternance chez Enedis. J'ai hâte de découvrir le monde professionnel, d'acquérir de nouvelles compétences et de mettre en pratique les connaissances apprises au cours de ma formation.
+<br><br>
+
+     À plus long terme, j'envisage d'intégrer une école d'ingénieur afin de compléter ma formation et d'élargir mes perspectives professionnelles.
+    </p>
+
+  </div>
+
+  <!-- COMPÉTENCES -->
+  <div class="ap-skills-section">
+    <h2 class="placeholder-title">Mes outils &amp; compétences</h2>
+    <div class="ap-skills-list">
+
+      <div class="ap-skill-card">
+        <div class="ap-skill-svg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+        <h3 class="ap-skill-card-name">SQL</h3>
+        <p class="ap-skill-card-desc">Langage de requêtage pour interroger et manipuler des bases de données relationnelles.</p>
+      </div>
+
+      <div class="ap-skill-card">
+        <div class="ap-skill-svg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3 class="ap-skill-card-name">R</h3>
+        <p class="ap-skill-card-desc">Langage open source orienté statistiques, idéal pour l'analyse de données et la modélisation.</p>
+      </div>
+
+      <div class="ap-skill-card">
+        <div class="ap-skill-svg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 class="ap-skill-card-name">Python</h3>
+        <p class="ap-skill-card-desc">Langage polyvalent incontournable en data science pour traiter, analyser et visualiser des données.</p>
+      </div>
+
+      <div class="ap-skill-card">
+        <div class="ap-skill-svg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 17h7M17.5 14v7"/></svg>
+        </div>
+        <h3 class="ap-skill-card-name">Power BI</h3>
+        <p class="ap-skill-card-desc">Outil Microsoft de datavisualisation pour créer des tableaux de bord interactifs et dynamiques.</p>
+      </div>
+
+      <div class="ap-skill-card">
+        <div class="ap-skill-svg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h3 class="ap-skill-card-name">SAS</h3>
+        <p class="ap-skill-card-desc">Logiciel de programmation orienté statistiques et analyse de données, utilisé en entreprise.</p>
+      </div>
+
+      <div class="ap-skill-card">
+        <div class="ap-skill-svg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+        </div>
+        <h3 class="ap-skill-card-name">Excel / VBA</h3>
+        <p class="ap-skill-card-desc">Outil de référence pour l'analyse tabulaire et l'automatisation de tâches via la programmation VBA.</p>
+      </div>
+
+    </div>
+  </div>
+<!-- CENTRES D'INTÉRÊT -->
+<div class="ap-interests-section">
+  <h2 class="placeholder-title">Mes centres d'intérêt</h2>
+  <div class="ap-interests-list">
+
+    <div class="ap-interest-card">
+      <div class="ap-interest-icon">⚽</div>
+      <h3 class="ap-interest-card-name">Le Sport</h3>
+      <p class="ap-interest-card-desc">Je pratique le sport de temps en temps, principalement pour le plaisir et pour me maintenir en forme. C'est une activité que j'apprécie lorsqu'il me reste du temps libre, car elle me permet de me détendre et de me changer les idées.</p>
+    </div>
+
+    <div class="ap-interest-card">
+      <div class="ap-interest-icon">✈️</div>
+      <h3 class="ap-interest-card-name">Les Voyages</h3>
+      <p class="ap-interest-card-desc">J'aime voyager lorsque j'en ai l'occasion. Découvrir de nouveaux endroits, voir des paysages différents et découvrir d'autres façons de vivre sont des expériences que j'apprécie. Même si je ne voyage pas souvent, chaque déplacement est pour moi l'occasion de sortir de ma routine et de découvrir de nouvelles choses.</p>
+    </div>
+
+    <div class="ap-interest-card">
+      <div class="ap-interest-icon">🫂</div>
+      <h3 class="ap-interest-card-name">Le Lien Humain</h3>
+      <p class="ap-interest-card-desc">J'accorde beaucoup d'importance aux personnes qui m'entourent, notamment ma famille et mes amis. J'apprécie passer du temps avec eux, discuter, partager des moments simples et profiter de leur présence. Ces relations occupent une place importante dans ma vie et contribuent à mon équilibre au quotidien.</p>
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="projects-wrap">
+    <div class="projects-header">
+      <div class="projects-eyebrow">Réalisations</div>
+      <h2 class="projects-title">Mes projets</h2>
+    </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Reporting à partir de données stockées dans un SGBD relationnel</h3>
+      <p>Dans le cadre de ce projet, nous avons conçu une application de suivi des résultats académiques sous Excel destinée aux étudiants de BUT SD1. L'outil développé permet la saisie et la mise à jour des notes à travers une interface intuitive intégrant des listes déroulantes dynamiques pour sélectionner les semestres, compétences, ressources et SAÉ. Un tableau de bord interactif a également été mis en place afin de faciliter l'analyse des performances grâce à des indicateurs visuels et des graphiques synthétiques. Par ailleurs, une fonctionnalité automatisée de décision de jury a été développée pour évaluer la validation de l'année selon les critères définis. La programmation en VBA a été utilisée pour enrichir l'ergonomie de l'outil, notamment via la création de formulaires personnalisés. Ce projet m'a permis de renforcer mes compétences en développement d'applications sous Excel, en automatisation avec VBA, en conception d'interfaces utilisateur et en gestion de projets répondant à un cahier des charges précis.</p>
+      <button class="ac-btn" onclick="toggleAC(this)">Apprentissages critiques ↓</button>
+      <div class="ac-panel"><ul>
+        <li><span class="ac-code">AC11.01</span> Correctement interpréter et prendre en compte le besoin du commanditaire ou du client</li>
+        <li><span class="ac-code">AC11.02</span> Respecter les formalismes de notation</li>
+        <li><span class="ac-code">AC11.03</span> Connaître la syntaxe des langages et savoir l'utiliser</li>
+        <li><span class="ac-code">AC11.04</span> Mesurer l'importance de maîtriser la structure des données à exploiter</li>
+      </ul></div>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 1/image1.png" class="active">
+      <img src="Images/Projet 1/image2.png">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Écriture et lecture de fichiers de données</h3>
+      <p>Dans le cadre de cette SAÉ, nous avons développé un script Python permettant de transformer un fichier JSON contenant des données sur la qualité de l'air à Poitiers en un fichier CSV exploitable pour l'analyse. Le travail consistait à extraire les informations pertinentes relatives aux stations de mesure, aux polluants et aux prélèvements, tout en nettoyant les données en supprimant les enregistrements incomplets. Une attention particulière a été portée au formatage des dates, à la gestion des caractères accentués et à la structuration du fichier final afin de garantir sa compatibilité avec Excel. Ce projet m'a permis de renforcer mes compétences en programmation Python, en manipulation de fichiers JSON et CSV, en traitement et nettoyage de données, ainsi qu'en compréhension des structures de données et des algorithmes nécessaires à leur transformation.</p>
+      <button class="ac-btn" onclick="toggleAC(this)">Apprentissages critiques ↓</button>
+      <div class="ac-panel"><ul>
+        <li><span class="ac-code">AC11.01</span> Correctement interpréter et prendre en compte le besoin du commanditaire ou du client</li>
+        <li><span class="ac-code">AC11.02</span> Respecter les formalismes de notation</li>
+        <li><span class="ac-code">AC11.03</span> Connaître la syntaxe des langages et savoir l'utiliser</li>
+        <li><span class="ac-code">AC11.04</span> Mesurer l'importance de maîtriser la structure des données à exploiter</li>
+        <li><span class="ac-code">AC11.05</span> Comprendre les structures algorithmiques de base et leur contexte d'usage</li>
+        <li><span class="ac-code">AC11.06</span> Prendre conscience de l'intérêt de la programmation</li>
+      </ul></div>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 2/image1.png" class="active">
+      <img src="Images/Projet 2/image2.png">
+      <img src="Images/Projet 2/image3.png">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Préparation et synthèse d'un tableau de données en vue d'une analyse exploratoire simple</h3>
+      <p>Nous devions analyser les usages du smartphone auprès des étudiants en BUT de l'IUT de Niort à partir d'une enquête réalisée sous Sphinx. Après avoir préparé et exploré les données collectées auprès de 373 répondants, nous avons étudié les habitudes d'utilisation, les comportements numériques et les perceptions des étudiants. Les résultats ont été valorisés à travers un document de synthèse structuré autour de plusieurs axes d'analyse ainsi qu'un tableau de bord visuel intégrant différents graphiques et indicateurs clés. Ce projet a mobilisé nos compétences en préparation et traitement de données, en analyse statistique descriptive, en visualisation de l'information et en communication des résultats.</p>
+      <button class="ac-btn" onclick="toggleAC(this)">Apprentissages critiques ↓</button>
+      <div class="ac-panel"><ul>
+        <li><span class="ac-code">AC12.01</span> Réaliser que les sources de données ont des caractéristiques propres à considérer</li>
+        <li><span class="ac-code">AC12.02</span> Comprendre qu'une analyse correcte ne peut émaner que de données propres et préparées</li>
+        <li><span class="ac-code">AC12.03</span> Comprendre l'intérêt des synthèses numériques et graphiques pour décrire une variable statistique</li>
+        <li><span class="ac-code">AC12.04</span> Comprendre l'intérêt des synthèses numériques et graphiques pour mettre en évidence des liaisons entre variables</li>
+      </ul></div>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 3/image1.png" class="active">
+      <img src="Images/Projet 3/image2.png">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Conception et implémentation d'une base de données</h3>
+      <p>Nous avons mené un projet de conception et d'implémentation d'une base de données pour GreenSD, une entreprise spécialisée dans la logistique urbaine bas-carbone. L'objectif était de centraliser la gestion des flux logistiques en assurant le suivi des livraisons, des véhicules écologiques, des tournées, des conducteurs et des émissions de CO₂ associées. Nous avons conçu un modèle conceptuel de données (MCD) avec Looping, puis généré le modèle logique et les scripts SQL nécessaires à la création et à l'alimentation de la base sous MySQL. Un script Python a été développé afin d'automatiser l'importation et le traitement des données issues de fichiers CSV. Nous avons également conçu une interface graphique avec Tkinter permettant de consulter les tables, de gérer les données et d'exécuter différentes requêtes d'analyse destinées à l'aide à la décision.</p>
+      <button class="ac-btn" onclick="toggleAC(this)">Apprentissages critiques ↓</button>
+      <div class="ac-panel"><ul>
+        <li><span class="ac-code">AC11.01</span> Correctement interpréter et prendre en compte le besoin du commanditaire ou du client</li>
+        <li><span class="ac-code">AC11.02</span> Respecter les formalismes de notation</li>
+        <li><span class="ac-code">AC11.03</span> Connaître la syntaxe des langages et savoir l'utiliser</li>
+        <li><span class="ac-code">AC11.04</span> Mesurer l'importance de maîtriser la structure des données à exploiter</li>
+        <li><span class="ac-code">AC11.05</span> Comprendre les structures algorithmiques de base et leur contexte d'usage</li>
+        <li><span class="ac-code">AC11.06</span> Prendre conscience de l'intérêt de la programmation</li>
+      </ul></div>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 4/image1.png" class="active">
+      <img src="Images/Projet 4/image2.png">
+      <img src="Images/Projet 4/image3.png">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Estimation par échantillonnage</h3>
+      <p>Dans ce projet réalisé sous R, nous avons estimé la population totale de la région Normandie à partir de deux méthodes d'échantillonnage : l'échantillonnage aléatoire simple et l'échantillonnage stratifié. L'objectif était de comparer la précision de ces approches en analysant les intervalles de confiance et les marges d'erreur obtenus sur plusieurs tirages. Les résultats ont été présentés à l'aide d'un tableau Excel et d'un graphique accompagné d'un rapport détaillé.</p>
+      <button class="ac-btn" onclick="toggleAC(this)">Apprentissages critiques ↓</button>
+      <div class="ac-panel"><ul>
+        <li><span class="ac-code">AC12.01</span> Réaliser que les sources de données ont des caractéristiques propres à considérer</li>
+        <li><span class="ac-code">AC12.02</span> Comprendre qu'une analyse correcte ne peut émaner que de données propres et préparées</li>
+        <li><span class="ac-code">AC12.05</span> Comprendre l'intérêt de l'utilisation d'un modèle probabiliste</li>
+        <li><span class="ac-code">AC12.06</span> Appréhender la notion de fluctuation d'échantillonnage</li>
+      </ul></div>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 5/image1.png" class="active">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Régression sur des données réelles</h3>
+      <p>Dans le cadre de ce projet, nous avons travaillé sur la modélisation des prix immobiliers au sein de l'agglomération niortaise à partir de données de transactions de maisons et d'appartements réalisées depuis 2021. Après une phase d'exploration des données, nous avons étudié les relations entre le prix de vente et les différentes caractéristiques des biens afin d'identifier des segments homogènes pertinents pour la modélisation. Pour chaque segment, nous avons développé et implémenté manuellement des modèles de régression linéaire sous R, sans recourir aux fonctions automatisées de modélisation. Plusieurs transformations de variables ont été testées afin d'améliorer la qualité des ajustements et la précision des prédictions.</p>
+      <button class="ac-btn" onclick="toggleAC(this)">Apprentissages critiques ↓</button>
+      <div class="ac-panel"><ul>
+        <li><span class="ac-code">AC12.03</span> Comprendre l'intérêt des synthèses numériques et graphiques pour décrire une variable statistique</li>
+        <li><span class="ac-code">AC12.04</span> Comprendre l'intérêt des synthèses numériques et graphiques pour mettre en évidence des liaisons entre variables</li>
+      </ul></div>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 6/image1.png" class="active">
+      <img src="Images/Projet 6/image2.png">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Reporting et datavisualisation — R</h3>
+      <p>Dans le cadre de ce projet de visualisation de données, nous avons exploité plusieurs jeux de données issus de Parcoursup ainsi que des informations relatives aux effectifs d'élèves de terminale générale. L'objectif était de réaliser une analyse descriptive à travers la production de sept graphiques réalisés avec le logiciel R et la librairie ggplot2, chacun répondant à des contraintes précises de représentation statistique. Nous avons ainsi exploré différentes variables qualitatives et quantitatives, étudié leurs relations et mis en évidence des tendances à travers des visualisations variées, incluant également des représentations géographiques.</p>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 7/image1.png" class="active">
+      <img src="Images/Projet 7/image2.png">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Analyse de données, reporting et datavisualisation</h3>
+      <p>Dans le cadre de cette SAÉ, nous avons développé un outil d'analyse de données, de reporting et de datavisualisation pour le laboratoire Qualyse, spécialisé dans les analyses sanitaires. L'objectif était d'automatiser le traitement des résultats de tests PCR réalisés sur des élevages des départements 79 et 86 depuis 2018, tout en facilitant le suivi de leur évolution au fil du temps. Nous avons conçu une solution capable d'intégrer de nouveaux jeux de données, de classifier automatiquement les cheptels selon leur statut sanitaire et de produire des indicateurs pertinents sous forme de tableaux de bord interactifs. Réalisé en équipe selon la méthodologie agile SCRUM, ce projet m'a permis de développer mes compétences en gestion de projet, en traitement et visualisation de données, en automatisation de processus, ainsi qu'en communication et valorisation des résultats auprès d'un commanditaire.</p>
+      <button class="ac-btn" onclick="toggleAC(this)">Apprentissages critiques ↓</button>
+      <div class="ac-panel"><ul>
+        <li><span class="ac-code">AC11.01</span> Correctement interpréter et prendre en compte le besoin du commanditaire ou du client</li>
+        <li><span class="ac-code">AC11.02</span> Respecter les formalismes de notation</li>
+        <li><span class="ac-code">AC11.03</span> Connaître la syntaxe des langages et savoir l'utiliser</li>
+        <li><span class="ac-code">AC11.04</span> Mesurer l'importance de maîtriser la structure des données à exploiter</li>
+        <li><span class="ac-code">AC11.05</span> Comprendre les structures algorithmiques de base et leur contexte d'usage</li>
+        <li><span class="ac-code">AC11.06</span> Prendre conscience de l'intérêt de la programmation</li>
+        <li><span class="ac-code">AC12.01</span> Réaliser que les sources de données ont des caractéristiques propres à considérer</li>
+        <li><span class="ac-code">AC12.02</span> Comprendre qu'une analyse correcte ne peut émaner que de données propres et préparées</li>
+        <li><span class="ac-code">AC12.03</span> Comprendre l'intérêt des synthèses numériques et graphiques pour décrire une variable statistique</li>
+        <li><span class="ac-code">AC13.03</span> Mesurer l'importance de mettre en évidence des résultats clés par l'utilisation d'indicateurs pertinents</li>
+        <li><span class="ac-code">AC13.04</span> Lors de la restitution des résultats, mesurer l'importance d'expliciter également la démarche suivie</li>
+      </ul></div>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 8/image1.png" class="active">
+      <img src="Images/Projet 8/image2.png">
+      <img src="Images/Projet 8/image3.png">
+      <img src="Images/Projet 8/image4.png">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Data Visualisation</h3>
+      <p>Dans le cadre de ce projet de Data Visualisation, nous avons réalisé une étude comparative de deux pays de l'Union européenne à partir de plusieurs indicateurs démographiques et sociaux tels que la population, la mortalité, la fertilité, le mariage et le divorce. À l'aide de Power BI, nous avons exploré et analysé les données afin de mettre en évidence les similitudes et les différences entre les pays étudiés, tout en les comparant à la moyenne européenne. L'objectif était de construire une analyse visuelle cohérente et de raconter une histoire à partir des données en s'appuyant sur des tableaux de bord interactifs et des visualisations adaptées.</p>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 9/image1.png" class="active">
+      <img src="Images/Projet 9/image2.png">
+      <img src="Images/Projet 9/image3.png">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-content">
+      <h3>Journée Dataviz</h3>
+      <p>Dans le cadre de cette SAÉ, nous avons réalisé une infographie portant sur l'analyse des dynamiques démographiques des territoires à partir de données de l'INSEE. L'étude s'appuie sur plusieurs indicateurs tels que les naissances, les décès, le solde naturel et migratoire, ainsi que la répartition par tranches d'âge. Après une phase d'exploration et de compréhension des données, nous avons défini une problématique ciblée afin de mettre en évidence les principales évolutions démographiques entre 2016 et 2022. Les résultats ont été synthétisés sous la forme d'une infographie sur une seule page.</p>
+      <button class="ac-btn" onclick="toggleAC(this)">Apprentissages critiques ↓</button>
+      <div class="ac-panel"><ul>
+        <li><span class="ac-code">AC11.01</span> Correctement interpréter et prendre en compte le besoin du commanditaire ou du client</li>
+        <li><span class="ac-code">AC12.02</span> Comprendre qu'une analyse correcte ne peut émaner que de données propres et préparées</li>
+        <li><span class="ac-code">AC12.03</span> Comprendre l'intérêt des synthèses numériques et graphiques pour décrire une variable statistique</li>
+        <li><span class="ac-code">AC13.05</span> Comprendre les intérêts de la data visualisation et de l'infographie</li>
+        <li><span class="ac-code">AC13.06</span> Mesurer l'importance d'une expression précise et nuancée dans la communication des résultats</li>
+      </ul></div>
+    </div>
+    <div class="project-image"><div class="project-slider">
+      <button class="slider-btn slider-prev" onclick="changeSlide(this,-1)">❮</button>
+      <img src="Images/Projet 10/image1.png" class="active">
+      <button class="slider-btn slider-next" onclick="changeSlide(this,1)">❯</button>
+    </div></div>
+  </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="placeholder-section">
+    <div class="placeholder-eyebrow">Contact</div>
+    <h2 class="placeholder-title">Me contacter</h2>
+    <p class="placeholder-desc" style="margin-bottom: 40px;">Vous avez une question ou une opportunité ? N'hésite pas à me contacter.</p>
+
+    <div class="hero-contacts">
+      <a class="hero-contact-card" href="tel:+33774651021">
+        <div class="hero-contact-icon">📞</div>
+        <div class="hero-contact-label">Téléphone</div>
+        <div class="hero-contact-value">+33 7 74 65 10 21</div>
+      </a>
+      <a class="hero-contact-card" href="mailto:yasmineerraddaoui@gmail.com">
+        <div class="hero-contact-icon">✉️</div>
+        <div class="hero-contact-label">Email</div>
+        <div class="hero-contact-value">yasmineerraddaoui@gmail.com</div>
+      </a>
+      
+     <a class="hero-contact-card full-width" href="CV.pdf" download>
+    <div class="hero-contact-icon">📄</div>
+    <div class="hero-contact-label">Curriculum Vitae</div>
+    <div class="hero-contact-value">Télécharger mon CV</div>
+  </a>
+</div>
+  </div>
+</section>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('btn-' + id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleAC(btn) {
+    const panel = btn.nextElementSibling;
+    const isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    btn.textContent = isOpen ? 'Apprentissages critiques ↓' : 'Apprentissages critiques ↑';
+    btn.classList.toggle('open', !isOpen);
+  }
+
+  function changeSlide(button, direction) {
+    const slider = button.parentElement;
+    const images = slider.querySelectorAll('img');
+    let current = 0;
+    images.forEach((img, i) => { if (img.classList.contains('active')) current = i; img.classList.remove('active'); });
+    let next = current + direction;
+    if (next < 0) next = images.length - 1;
+    if (next >= images.length) next = 0;
+    images[next].classList.add('active');
+  }
+</script>
+
+</body>
+</html>
